@@ -43,19 +43,56 @@ function cardGenerator() {
     buttonEL.textContent = 'delete'
     document.body.append(buttonEL)
 
-    
-        const deleteButton = document.querySelector('.button')
-        deleteButton.addEventListener(('click'), () => {
-            const deleteTitle = document.querySelector('.title')
-            const deleteContent = document.querySelector('.content')
-            const deleteButton = document.querySelector('.button')
 
-            deleteTitle.remove(); // Remove the box element
-            deleteContent.remove(); // Remove the box element
-            deleteButton.remove(); // Remove the box element
-        })
-    
+    const deleteButton = document.querySelector('.button')
+    deleteButton.addEventListener(('click'), () => {
+        const deleteTitle = document.querySelector('.title')
+        const deleteContent = document.querySelector('.content')
+        const deleteButton = document.querySelector('.button')
+
+        deleteTitle.remove(); // Remove the box element
+        deleteContent.remove(); // Remove the box element
+        deleteButton.remove(); // Remove the box element
+    })
+
 
 
 }
+
+
+function isValidEmail(email) {
+
+    if (!email.includes("@") || !email.includes(".")) {
+        return false;
+    }
+
+
+    let parts = email.split("@");
+    if (parts.length !== 2) return false;
+
+    let local = parts[0];
+    let domain = parts[1];
+
+
+    if (local.length === 0 || domain.length === 0) return false;
+
+
+    if (!domain.includes(".")) return false;
+
+
+    if (domain.startsWith(".") || domain.endsWith(".")) return false;
+
+
+    if (email.startsWith("@") || email.endsWith("@")) return false;
+
+    return true;
+}
+
+
+console.log(isValidEmail("saba@gmail.com"));
+console.log(isValidEmail("saba-gmail.com"));
+console.log(isValidEmail("saba@gmail"));
+console.log(isValidEmail("@saba.com"));
+console.log(isValidEmail("saba@.com"));
+console.log(isValidEmail("saba@com."));
 
